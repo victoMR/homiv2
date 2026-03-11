@@ -1,4 +1,4 @@
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export function AboutSection() {
     const items = [
