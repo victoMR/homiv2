@@ -75,7 +75,7 @@ export function Footer() {
                                 contacto@aileadshield.com.mx
                             </a>
                             <br />
-                            <span className="block mt-1">Transformando LATAM y España</span>
+                            <span className="block mt-1">Transformando México</span>
                         </address>
 
                         <nav className="footer-links flex gap-4 text-brand-text-secondary">
@@ -94,11 +94,6 @@ export function Footer() {
                     <small className="text-xs">
                         © {currentYear} HOMY by AI Lead Shield. Todos los derechos reservados.
                     </small>
-                    <div className="flex gap-4">
-                        <a href="#" className="hover:text-white transition-colors">Políticas de Privacidad</a>
-                        <span className="text-white/10">•</span>
-                        <a href="#" className="hover:text-white transition-colors">Términos de Servicio y Condiciones</a>
-                    </div>
                 </div>
             </div>
         </footer>

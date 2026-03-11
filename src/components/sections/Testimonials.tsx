@@ -1,6 +1,22 @@
-import { Play, Star, ChevronRight, CheckCircle2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { Play, Star, ChevronRight, CheckCircle2, Pause } from "lucide-react";
+import videoSrc from "../../assets/vid.mp4";
 
 export function Testimonials() {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [playing, setPlaying] = useState(false);
+
+    const togglePlay = () => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (video.paused) {
+            video.play();
+            setPlaying(true);
+        } else {
+            video.pause();
+            setPlaying(false);
+        }
+    };
     const cards = [
         {
             resultado_badge: "Citas triplicadas · Desarrollo vendido",
@@ -31,7 +47,7 @@ export function Testimonials() {
 
                 {/* Header */}
                 <div className="mx-auto max-w-3xl text-center mb-16">
-                    <span className="inline-block rounded-full bg-green-500/10 px-3 py-1 mb-4 text-xs font-semibold text-green-400 border border-green-500/20">
+                    <span className="inline-block rounded-full bg-brand-green/10 px-3 py-1 mb-4 text-xs font-semibold text-brand-green border border-brand-green/20">
                         Resultados Reales
                     </span>
                     <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6">
@@ -45,15 +61,26 @@ export function Testimonials() {
 
                 {/* Video Principal */}
                 <figure className="video-testimonial aspect-video w-full max-w-4xl mx-auto rounded-2xl overflow-hidden relative group cursor-pointer border border-white/10 shadow-2xl bg-[#0A0A0A] mb-16">
-                    <img
-                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
-                        alt="Caso de éxito Alejandro Rivadeneyra"
-                        className="h-full w-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                    <video
+                        ref={videoRef}
+                        src={videoSrc}
+                        className="h-full w-full object-cover"
+                        playsInline
+                        muted={false}
+                        onEnded={() => setPlaying(false)}
+                        onClick={togglePlay}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                    <div
+                        className={`absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-8 transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : ""}`}
+                    >
                         <div className="flex items-center gap-4">
-                            <button aria-label="Reproducir testimonio" className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-accent text-white shadow-lg transition-transform group-hover:scale-110">
-                                <Play className="ml-1 h-8 w-8 fill-current" />
+                            <button
+                                type="button"
+                                aria-label={playing ? "Pausar testimonio" : "Reproducir testimonio"}
+                                onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                                className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-accent text-white shadow-lg transition-transform group-hover:scale-110"
+                            >
+                                {playing ? <Pause className="h-8 w-8" /> : <Play className="ml-1 h-8 w-8 fill-current" />}
                             </button>
                             <div>
                                 <p className="text-xl font-bold text-white">Alejandro Rivadeneyra</p>

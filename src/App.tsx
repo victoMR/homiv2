@@ -1,6 +1,7 @@
 import { Navbar } from './components/layout/Navbar'
 import { Hero } from './components/sections/Hero'
 import { StatsBar } from './components/sections/StatsBar'
+import { PipelineSection } from './components/sections/PipelineSection'
 import { PainSection } from './components/sections/PainSection'
 import { StackSection } from './components/sections/StackSection'
 import { HomySection } from './components/sections/HomySection'
@@ -11,12 +12,13 @@ import { UrgencyBar, Footer } from './components/sections/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen selection:bg-brand-accent/30 selection:text-white">
+    <div className="min-h-screen selection:bg-brand-accent/30 selection:text-white overflow-x-hidden">
       <Navbar />
 
-      <main>
+      <main className="pt-[8rem] overflow-x-hidden">
         <Hero />
         <StatsBar />
+        <PipelineSection />
         <PainSection />
         <StackSection />
         <HomySection />

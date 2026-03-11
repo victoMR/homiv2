@@ -45,8 +45,8 @@ export function FormSection() {
 
                         <div className="pt-6 border-t border-white/5">
                             <p className="form-trust text-xs font-medium text-brand-text-secondary flex items-center gap-2">
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/20">
-                                    <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-green/20">
+                                    <span className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
                                 </span>
                                 Sin compromisos ocultos. Asegura tu reserva recibiendo la invitación.
                             </p>
@@ -55,28 +55,27 @@ export function FormSection() {
 
                     {/* Right: Booking Form Widget Container */}
                     <div className="relative animate-fade-in" style={{ animationDelay: '150ms' }}>
-                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-brand-accent/20 to-purple-500/20 blur-xl opacity-50" />
+                        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-brand-accent/20 to-brand-green/20 blur-xl opacity-50" />
                         <div className="relative rounded-2xl border border-white/10 bg-[#0F0F0F] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                             {/* Fake browser header for aesthetic */}
                             <div className="flex h-10 items-center justify-between border-b border-white/5 bg-[#151515] px-4 rounded-t-xl mb-4">
                                 <div className="flex space-x-2">
                                     <div className="h-3 w-3 rounded-full bg-red-500/80" />
                                     <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                                    <div className="h-3 w-3 rounded-full bg-green-500/80" />
+                                    <div className="h-3 w-3 rounded-full bg-brand-green/80" />
                                 </div>
                                 <div className="text-xs font-semibold text-brand-text-secondary">Conectar con Especialista</div>
                             </div>
 
-                            {/* Calendly iFrame Placeholder */}
-                            {/* We use a min-height div to simulate the iframe loading behavior if URL isn't present initially */}
-                            <div className="calendly-inline-widget min-h-[600px] w-full bg-white rounded-lg flex items-center justify-center text-black/50 overflow-hidden">
+                            {/* LeadConnector / Calendario de reservas — scroll e interacción habilitados */}
+                            <div className="min-h-[600px] w-full rounded-lg bg-[#0F0F0F]">
                                 <iframe
-                                    src="https://calendly.com/YOUR-CALENDLY-LINK?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0a0a0a&text_color=ededed&primary_color=3b82f6"
-                                    width="100%"
-                                    height="650"
-                                    frameBorder="0"
-                                    className="rounded-lg w-full h-[650px]"
-                                    title="Reserva tu cita"
+                                    src="https://api.leadconnectorhq.com/widget/booking/l4MFnsp6eATJEWMSqGLJ"
+                                    style={{ width: "100%", border: "none", minHeight: "700px" }}
+                                    scrolling="yes"
+                                    id="l4MFnsp6eATJEWMSqGLJ_1773254405495"
+                                    title="Agendar diagnóstico"
+                                    className="w-full min-h-[700px] h-[700px] rounded-lg"
                                 />
                             </div>
                         </div>

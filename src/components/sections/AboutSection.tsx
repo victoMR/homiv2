@@ -34,15 +34,17 @@ export function AboutSection() {
                             ))}
                         </ul>
 
+                        {/* Acercarme al equipo — comentado
                         <div className="pt-8">
                             <a href="#demo" className="btn-ghost group text-base px-6 py-3 border border-white/10 hover:border-white/30">
                                 Acercarme al equipo
                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </a>
                         </div>
+                        */}
                     </div>
 
-                    {/* Right: Team Photo Placeholder */}
+                    {/* Right: Team Photo Placeholder — comentado (Equipo fundador / Operando en 3 países)
                     <figure className="team-photo relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl group">
                         <div className="absolute inset-0 bg-brand-accent/20 transition-opacity duration-500 group-hover:opacity-0 mix-blend-overlay z-10" />
                         <img
@@ -50,15 +52,14 @@ export function AboutSection() {
                             alt="Equipo fundador operando HOMY"
                             className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                         />
-
-                        {/* Overlay Tag */}
                         <div className="absolute bottom-6 left-6 z-20 rounded-xl border border-white/10 bg-black/60 backdrop-blur-md p-4">
                             <div className="flex items-center gap-3">
-                                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                                <div className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
                                 <p className="text-sm font-semibold text-white tracking-wide">Operando en 3 países</p>
                             </div>
                         </div>
                     </figure>
+                    */}
 
                 </div>
             </div>

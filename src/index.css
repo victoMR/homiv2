@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-bg: #0A0A0A;
-  --color-brand-bg-secondary: #1A1A1A;
-  --color-brand-text: #EDEDED;
-  --color-brand-text-secondary: #A0A0A0;
-  --color-brand-accent: #3B82F6;
-  --color-brand-border: #2A2A2A;
+  /* Paleta del logo: teal/azul, cyan, verde, blanco, negro */
+  --color-brand-bg: #000000;
+  --color-brand-bg-secondary: #0f1419;
+  --color-brand-text: #f0fdfa;
+  --color-brand-text-secondary: #94a3b8;
+  --color-brand-accent: #0d9488;       /* teal - lado azul del logo */
+  --color-brand-cyan: #06b6d4;         /* cyan - brillo del logo */
+  --color-brand-green: #10b981;       /* verde - lado verde del logo */
+  --color-brand-border: #1e3a3a;
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
-
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 @layer base {
@@ -27,9 +30,9 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Base typography values */
     font-size: 16px;
     line-height: 1.5;
+    overflow-x: hidden;
   }
 
   h1,
@@ -47,7 +50,7 @@
 
   /* Common Utilities as identified in the design rules */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:ring-4 focus:ring-blue-500/30;
+    @apply inline-flex items-center justify-center rounded-lg bg-brand-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 focus:ring-4 focus:ring-brand-accent/30;
   }
 
   .btn-secondary {
@@ -67,7 +70,7 @@
   }
 
   .glass-card {
-    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-[0_8px_32px_rgba(0, 0, 0, 0.12)];
+    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-glass;
   }
 }
 
@@ -86,4 +89,85 @@
 
 .animate-fade-in {
   animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pipeline flow: el "lead" llega → pasa → pasa → pasa (animación continua) */
+@keyframes pipeline-dot {
+  0% { left: 12.5%; transform: translate(-50%, -50%) scale(1); }
+  12% { left: 12.5%; transform: translate(-50%, -50%) scale(1.15); }
+  25% { left: 37.5%; transform: translate(-50%, -50%) scale(1); }
+  37% { left: 37.5%; transform: translate(-50%, -50%) scale(1.15); }
+  50% { left: 62.5%; transform: translate(-50%, -50%) scale(1); }
+  62% { left: 62.5%; transform: translate(-50%, -50%) scale(1.15); }
+  75% { left: 87.5%; transform: translate(-50%, -50%) scale(1); }
+  87% { left: 87.5%; transform: translate(-50%, -50%) scale(1.15); }
+  100% { left: 12.5%; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Cada paso se ilumina cuando el "lead" llega (desktop: con scale) */
+@keyframes pipeline-step-glow {
+  0%, 5%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); border-color: rgba(255,255,255,0.1); transform: scale(1); }
+  10% { box-shadow: 0 0 28px 4px rgba(13, 148, 136, 0.35); border-color: rgba(13, 148, 136, 0.6); transform: scale(1.03); }
+  20%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); border-color: rgba(255,255,255,0.1); transform: scale(1); }
+}
+
+/* En móvil: mismo efecto sin scale para no mover nada en el eje X */
+@keyframes pipeline-step-glow-mobile {
+  0%, 5%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); border-color: rgba(255,255,255,0.1); }
+  10% { box-shadow: 0 0 28px 4px rgba(13, 148, 136, 0.35); border-color: rgba(13, 148, 136, 0.6); }
+  20%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); border-color: rgba(255,255,255,0.1); }
+}
+
+.pipeline-step-card {
+  animation: pipeline-step-glow 8s ease-in-out infinite;
+}
+
+@media (max-width: 1023px) {
+  .pipeline-step-card {
+    animation-name: pipeline-step-glow-mobile;
+  }
+}
+
+/* Tarjeta HOMY PIPELINE en Hero: barras que se llenan al entrar */
+@keyframes pipeline-bar-fill-85 {
+  from { width: 0%; }
+  to { width: 85%; }
+}
+
+@keyframes pipeline-bar-fill-45 {
+  from { width: 0%; }
+  to { width: 45%; }
+}
+
+/* Notificación "+1 Venta Cerrada" entra y late */
+@keyframes pipeline-notif-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pipeline-notif-pulse {
+  0%, 100% { box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2); }
+  50% { box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35); }
+}
+
+/* HOMY PIPELINE card: sensación "en vivo" */
+@keyframes pipeline-card-live {
+  0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(13, 148, 136, 0.15); }
+  50% { box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 0 24px 2px rgba(13, 148, 136, 0.12); }
+}
+
+@keyframes pipeline-subtitle-reveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pipeline-metric-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Indicador "en vivo" — puntos que laten */
+@keyframes pipeline-dot-live {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
 }

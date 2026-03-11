@@ -37,7 +37,7 @@ export function StackSection() {
             <div className="section-container">
 
                 <div className="mx-auto max-w-3xl text-center mb-16">
-                    <span className="inline-block rounded-full bg-blue-500/10 px-3 py-1 mb-4 text-xs font-semibold text-brand-accent border border-brand-accent/20">
+                    <span className="inline-block rounded-full bg-brand-green/10 px-3 py-1 mb-4 text-xs font-semibold text-brand-accent border border-brand-accent/20">
                         Activo en 15 días
                     </span>
                     <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6">
